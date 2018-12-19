@@ -1,0 +1,347 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+
+    <link rel="stylesheet" href="css/main.css">
+    <!-- fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Kaushan+Script:400">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Rubik:300,300i,400,400i,500,500i,700,700i,900,900i">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+
+
+    <style>
+
+        .info-header {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info-header div {
+            border: 4px dotted #fff;
+            border-radius: 100%;
+            width: 500px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .info-header div button {
+            text-align: center;
+            color: #fff;
+        }
+
+        .pg1 {
+            background:linear-gradient(0deg,rgba(126, 7, 7, 0.418),rgba(255,0,150,0.3)),url(imgs/wedding/1.jpg);
+            /* background-image: url('imgs/wedding/1.jpg'); */
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .pg2 {
+            background-image: url('imgs/wedding/3.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .pg3 {
+            background-image: url('imgs/wedding/4.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .pg4 {
+            background-image: url('imgs/wedding/2.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+        .pg5 {
+            background-image: url('imgs/wedding/5.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+
+
+
+        #navigationTool {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+
+        #navigationTool .prev i,  #navigationTool .next i {
+            font-size: 2rem;
+            color: #fff;
+        }
+
+        #dots{
+            cursor: default;
+        }
+        
+        #dots ul{
+            padding: 0;
+            margin: 0;
+        }
+        
+        #dots li{
+            display: inline-block;
+            *display: inline;
+            zoom: 1.0;
+            background: #61676D;
+            width: 10px;
+            height: 10px;
+            border-radius: 8px;
+            margin: 0 2px;
+            cursor: pointer;
+        }
+        
+        #dots li.active, #dots li:hover{
+            background: #c4c9cf;
+        }
+        
+        
+    </style>
+</head>
+
+<body>
+        <div id="flipbook">
+    
+            <div class="pg1">
+                <div class="info-header">
+                    <div>
+                        <button onclick="startThePage()" class="btn btn-light text-dark" id="navigateMessage">Click here to Start</button>
+                    </div>
+                </div>
+            </div>
+            <div class="pg2">
+            </div>
+            <div class="pg3">
+            </div>
+            <div class="pg4">
+            </div>
+            <div class="pg5">
+            </div>
+
+        </div>
+
+        <div id="navigationTool">
+            <div class="prev btn btn-dark" onclick="prevTurn()">
+                <i class="fas fa-chevron-left"></i>
+            </div>
+            <div id="dots">
+                <ul>
+                    <li id="pageNav1" onclick="navigateToPage( 1)" class="active"></li>
+                    <li id="pageNav2" onclick="navigateToPage( 2)" class=""></li>
+                    <li id="pageNav3" onclick="navigateToPage( 3)" class=""></li>
+                    <li id="pageNav4" onclick="navigateToPage( 4)" class=""></li>
+                    <li id="pageNav5" onclick="navigateToPage( 5)" class=""></li>                    
+                </ul>
+            </div>
+            <div class="next btn btn-dark" onclick="nextTurn()">
+                <i class="fas fa-chevron-right"></i>
+            </div>
+        </div>
+
+        <audio id="audioOne" controls onended="audioEnded(this)" style="display: none">
+            <source src="audio/testaudio1.m4a" type="audio/mp3">
+        </audio>
+        <audio id="audioTwo" controls onended="audioEnded(this)" style="display: none">
+            <source src="audio/testaudio2.m4a" type="audio/mp3">
+        </audio>
+        <audio id="audioThree" controls onended="audioEnded(this)" style="display: none">
+            <source src="audio/testaudio3.m4a" type="audio/mp3">
+        </audio>
+        <audio id="audioFour" controls onended="audioEnded(this)" style="display: none">
+            <source src="audio/testaudio1.m4a" type="audio/mp3">
+        </audio>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+        
+    <script type="text/javascript" src="libraries/turn.js"></script>
+
+    <script type="text/javascript">
+        $("#flipbook").turn({
+            // display: 'single',
+            width: $('body').width(),
+            height: $(window).height(),
+            display: 'single',
+            acceleration: true,
+            gradients: !$.isTouch,
+            elevation:50,
+            when: {
+                turned: function(e, page) {
+                    // console.log('Current view: ', $(this).turn('view'));
+                    
+                }
+            }
+        });
+
+
+        $("#flipbook").bind("turning", function(event, page, view) {
+            function isPlaying(audelem) {console.log(audelem.paused); return !audelem.paused; }                   
+            
+            console.log('page turned', event, page, view)                
+                if(page === 1) {
+                    audio1.pause();
+                    audio1.currentTime = 0;                    
+                    audio2.pause();
+                    audio2.currentTime = 0;                    
+                    audio3.pause();
+                    audio3.currentTime = 0;                    
+                    audio4.pause();
+                    audio4.currentTime = 0;                    
+
+                    $('#pageNav1').siblings().map((key, val) => {
+                        $(val).removeClass('active')
+                    })
+                    $('#pageNav1').addClass('active')
+
+                }else if(page === 2){
+                    $('#pageNav2').siblings().map((key, val) => {
+                        $(val).removeClass('active')
+                    })
+                    $('#pageNav2').addClass('active')
+                    setTimeout(() => {
+                        $('#navigateMessage').text('Click here to Start')                
+                    }, 1000);
+                    if(isPlaying(audio2) || isPlaying(audio3) || isPlaying(audio4)) {
+                        audio2.pause();
+                        audio2.currentTime = 0;
+                        audio3.pause();
+                        audio3.currentTime = 0;
+                        audio4.pause();
+                        audio4.currentTime = 0;
+                    }
+                    audio1.play();            
+                }else if(page === 3) {
+                    $('#pageNav3').siblings().map((key, val) => {
+                        $(val).removeClass('active')
+                    })
+                    $('#pageNav3').addClass('active')
+                    if(isPlaying(audio1) || isPlaying(audio3) || isPlaying(audio4)) {
+                        audio1.pause();
+                        audio1.currentTime = 0;
+                        audio3.pause();
+                        audio3.currentTime = 0;
+                        audio4.pause();
+                        audio4.currentTime = 0;
+                    }
+                    audio2.play();
+                }else if(page === 4) {
+                    $('#pageNav4').siblings().map((key, val) => {
+                        $(val).removeClass('active')
+                    })
+                    $('#pageNav4').addClass('active')
+                    if(isPlaying(audio1) || isPlaying(audio2) || isPlaying(audio4)) {
+                        audio1.pause();
+                        audio1.currentTime = 0;
+                        audio2.pause();
+                        audio2.currentTime = 0;
+                        audio4.pause();
+                        audio4.currentTime = 0;
+                    }
+                    audio3.play();
+                }else if(page === 5) {
+                    $('#pageNav5').siblings().map((key, val) => {
+                        $(val).removeClass('active')
+                    })
+                    $('#pageNav5').addClass('active')
+                    if(isPlaying(audio1) || isPlaying(audio2) || isPlaying(audio3)) {
+                        audio1.pause();
+                        audio1.currentTime = 0;
+                        audio2.pause();
+                        audio2.currentTime = 0;
+                        audio3.pause();
+                        audio3.currentTime = 0;
+                    }
+                    audio4.play();
+                }
+        });
+
+
+        var audio1 = document.getElementById('audioOne')
+        var audio2 = document.getElementById('audioTwo')
+        var audio3 = document.getElementById('audioThree')
+        var audio4 = document.getElementById('audioFour')
+        
+
+        $(window).bind('keydown', function(e){
+            
+            if (e.keyCode==37) {
+                $('#flipbook').turn('previous');
+            }
+            else if (e.keyCode==39) {
+                $('#flipbook').turn('next');
+            }
+                
+        });
+        
+        
+        function audioEnded(data) {
+            console.log('audioEnded', data.id)
+            setTimeout(() => {
+                if(data.id === 'audioFour') {
+                    $('#navigateMessage').text('Thank you')
+                    $('#flipbook').turn("page", 1)
+                }else {
+                    $('#flipbook').turn('next');
+                }
+            }, 1000);
+        }
+
+
+        //nav
+        function navigateToPage(page) {
+            $('#flipbook').turn("page", page)
+        }
+
+        //startThePage
+        function startThePage() {
+            if($('#navigateMessage').text() === 'Click here to Start') {
+                $('#flipbook').turn('next')
+            }
+        }
+
+        function prevTurn() {
+            $('#flipbook').turn('previous');            
+        }
+        function nextTurn() {
+            $('#flipbook').turn('next');            
+        }
+
+
+    </script>
+
+</body>
+
+</html>
