@@ -357,7 +357,9 @@
 
         function prevTurn() {
             if(startedCounter) {
-                $('#flipbook').turn('previous');            
+                if($('#flipbook').turn('page') !== 2) {                
+                    $('#flipbook').turn('previous');       
+                }     
             }
         }
         function nextTurn() {
