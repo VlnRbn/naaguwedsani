@@ -90,7 +90,7 @@
             display: flex;
             align-items: center;
             justify-content: space-evenly;
-            width: 100%;
+            width: 50%;
         }
 
         #navigationTool .prev i,  #navigationTool .next i {
@@ -149,7 +149,7 @@
         </div>
 
         <div id="navigationTool">
-            <div class="prev btn btn-dark" onclick="prevTurn()">
+            <div class="prev btn btn-dark refereceToHide hideButton" onclick="prevTurn()">
                 <i class="fas fa-chevron-left"></i>
             </div>
             <div id="dots">
@@ -161,7 +161,7 @@
                     <li id="pageNav5" onclick="navigateToPage( 5)" class=""></li>                    
                 </ul>
             </div>
-            <div class="next btn btn-dark" onclick="nextTurn()">
+            <div class="next btn btn-dark refereceToHide hideButton" onclick="nextTurn()">
                 <i class="fas fa-chevron-right"></i>
             </div>
         </div>
@@ -190,6 +190,12 @@
     <script type="text/javascript" src="libraries/turn.js"></script>
 
     <script type="text/javascript">
+    
+        //start counter
+        var startedCounter = false
+
+
+
         $("#flipbook").turn({
             // display: 'single',
             width: $('body').width(),
@@ -201,8 +207,14 @@
             when: {
                 turned: function(e, page) {
                     // console.log('Current view: ', $(this).turn('view'));
-                    
+                    if($('#flipbook').turn('page') === 2) {
+                        console.log('yaya')
+                    }                    
                 }
+            }
+        }).bind("start", function(event, pageObject, corner) {
+            if (corner != null) {
+                return event.preventDefault();
             }
         });
 
@@ -210,7 +222,6 @@
         $("#flipbook").bind("turning", function(event, page, view) {
             function isPlaying(audelem) {console.log(audelem.paused); return !audelem.paused; }                   
             
-            console.log('page turned', event, page, view)                
                 if(page === 1) {
                     audio1.pause();
                     audio1.currentTime = 0;                    
@@ -296,12 +307,15 @@
         
 
         $(window).bind('keydown', function(e){
-            
-            if (e.keyCode==37) {
-                $('#flipbook').turn('previous');
-            }
-            else if (e.keyCode==39) {
-                $('#flipbook').turn('next');
+            if(startedCounter) {
+                if (e.keyCode==37) {
+                    if($('#flipbook').turn('page') !== 2) {
+                        $('#flipbook').turn('previous');
+                    }
+                }
+                else if (e.keyCode==39) {
+                    $('#flipbook').turn('next');
+                }
             }
                 
         });
@@ -319,24 +333,37 @@
             }, 1000);
         }
 
-
         //nav
         function navigateToPage(page) {
-            $('#flipbook').turn("page", page)
+            if($('#flipbook').turn("page") !== 2 && page !== 1) {
+                $('#flipbook').turn("page", page)
+            }
         }
 
         //startThePage
         function startThePage() {
             if($('#navigateMessage').text() === 'Click here to Start') {
                 $('#flipbook').turn('next')
+                startedCounter = true
             }
+
+            console.log($('.prev'))
+
+            $('.prev').removeClass('hideButton')
+            $('.next').removeClass('hideButton')
+            $('.prev').addClass('showButton')
+            $('.next').addClass('showButton')
         }
 
         function prevTurn() {
-            $('#flipbook').turn('previous');            
+            if(startedCounter) {
+                $('#flipbook').turn('previous');            
+            }
         }
         function nextTurn() {
-            $('#flipbook').turn('next');            
+            if(startedCounter) {            
+                $('#flipbook').turn('next');
+            }
         }
 
 
