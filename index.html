@@ -500,9 +500,14 @@ http://naagu-weds-ani.tk/"
 
     <script>
       var audio1 = document.getElementById("audioOne");
-
+      var flag = false;
       $(window).scroll(function() {
-        audio1.play();
+        if(!flag){
+          audio1.play();
+        }
+        if(!audio1.paused){
+          flag = true
+        }
       });
 
       $("#flipbook").turn({
