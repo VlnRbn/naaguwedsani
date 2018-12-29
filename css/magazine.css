@@ -1,0 +1,118 @@
+/* body{
+    overflow:hidden;
+} */
+
+#flipbook {
+  height: 600px;
+  max-width: 750px;
+  border: 2px solid rgb(195, 209, 160);
+  /* height: 300px; */
+}
+
+#flipbook .page {
+  width: 600px;
+  /* height: 300px; */
+  background-color: white;
+  line-height: 300px;
+  font-size: 20px;
+  text-align: center;
+}
+
+#flipbook .page-wrapper {
+  -webkit-perspective: 2000px;
+  -moz-perspective: 2000px;
+  -ms-perspective: 2000px;
+  -o-perspective: 2000px;
+  perspective: 2000px;
+}
+
+#flipbook .hard {
+  background: #ccc !important;
+  color: #333;
+  -webkit-box-shadow: inset 0 0 5px #666;
+  -moz-box-shadow: inset 0 0 5px #666;
+  -o-box-shadow: inset 0 0 5px #666;
+  -ms-box-shadow: inset 0 0 5px #666;
+  box-shadow: inset 0 0 5px #666;
+  font-weight: bold;
+}
+
+#flipbook .odd {
+  background: -webkit-gradient(
+    linear,
+    right top,
+    left top,
+    color-stop(0.95, #fff),
+    color-stop(1, #dadada)
+  );
+  background-image: -webkit-linear-gradient(right, #fff 95%, #c4c4c4 100%);
+  background-image: -moz-linear-gradient(right, #fff 95%, #c4c4c4 100%);
+  background-image: -ms-linear-gradient(right, #fff 95%, #c4c4c4 100%);
+  background-image: -o-linear-gradient(right, #fff 95%, #c4c4c4 100%);
+  background-image: linear-gradient(right, #fff 95%, #c4c4c4 100%);
+  -webkit-box-shadow: inset 0 0 5px #666;
+  -moz-box-shadow: inset 0 0 5px #666;
+  -o-box-shadow: inset 0 0 5px #666;
+  -ms-box-shadow: inset 0 0 5px #666;
+  box-shadow: inset 0 0 5px #666;
+}
+
+#flipbook .even {
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    color-stop(0.95, #fff),
+    color-stop(1, #dadada)
+  );
+  background-image: -webkit-linear-gradient(left, #fff 95%, #dadada 100%);
+  background-image: -moz-linear-gradient(left, #fff 95%, #dadada 100%);
+  background-image: -ms-linear-gradient(left, #fff 95%, #dadada 100%);
+  background-image: -o-linear-gradient(left, #fff 95%, #dadada 100%);
+  background-image: linear-gradient(left, #fff 95%, #dadada 100%);
+  -webkit-box-shadow: inset 0 0 5px #666;
+  -moz-box-shadow: inset 0 0 5px #666;
+  -o-box-shadow: inset 0 0 5px #666;
+  -ms-box-shadow: inset 0 0 5px #666;
+  box-shadow: inset 0 0 5px #666;
+}
+
+.book-cover-image {
+  width: 100%;
+  height: 100%;
+}
+.book-non-cover {
+  width: calc(100% - 45px);
+  margin: 20px;
+  margin-left: 25px;
+  height: auto;
+}
+
+.book-info {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.display-7 {
+  font-family: "Open Sans", sans-serif;
+}
+
+.display-2,
+.display-3 {
+  font-family: "Kaushan Script", cursive;
+}
+
+.book-font,
+.display-1,
+.display-5,
+.countdown-cont .display-2 {
+  font-family: "Sacramento", cursive !important;
+}
+
+@media (max-width: 767px) {
+  #flipbook {
+    height: 400px;
+  }
+}
