@@ -53,6 +53,13 @@ http://naagu-weds-ani.tk/"
   </head>
 
   <body>
+    <div id="overlay" onclick="on()">
+      <button class="overlay-btn btn" onclick="on()">
+        <h2 class="display-2">
+          ST&nbsp;<img src="./assets/images/heart.png" alt="" srcset="" />RT
+        </h2>
+      </button>
+    </div>
     <section
       class="header10 cid-rd9sKxQu9q mbr-fullscreen mbr-parallax-background"
       id="header10-b"
@@ -501,13 +508,24 @@ http://naagu-weds-ani.tk/"
     <script>
       var audio1 = document.getElementById("audioOne");
       var flag = false;
-      $(window).scroll(function() {
+
+      function on() {
         if (!flag) {
           audio1.play();
         }
         if (!audio1.paused) {
           flag = true;
         }
+        document.getElementById("overlay").style.display = "none";
+      }
+
+      $(window).scroll(function() {
+        // if (!flag) {
+        //   audio1.play();
+        // }
+        // if (!audio1.paused) {
+        //   flag = true;
+        // }
       });
 
       $("#flipbook").turn({
