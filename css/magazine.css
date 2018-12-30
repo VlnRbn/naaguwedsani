@@ -4,6 +4,30 @@
 
 /* overlay */
 
+.audio-controller {
+  position: fixed;
+  width: 36px;
+  height: 36px;
+  border: 1px solid white;
+  background: #e6d1b9;
+  padding: 6px;
+  border-radius: 50%;
+  top: 10px;
+  right: 10px;
+  z-index: 1;
+}
+
+.audio-controller #speakerOff,
+.audio-controller #speakerOn {
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+}
+
+.audio-controller #speakerOn {
+  display: none;
+}
+
 #overlay {
   position: fixed;
   display: flex;

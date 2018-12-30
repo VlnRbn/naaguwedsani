@@ -53,6 +53,7 @@ http://naagu-weds-ani.tk/"
   </head>
 
   <body>
+    <!-- misc -->
     <div id="overlay" onclick="on()">
       <button class="overlay-btn btn" onclick="on()">
         <h2 class="display-2">
@@ -60,6 +61,23 @@ http://naagu-weds-ani.tk/"
         </h2>
       </button>
     </div>
+
+    <div class="audio-controller">
+      <img
+        id="speakerOff"
+        onclick="pauseSong()"
+        src="./assets/images/speaker_off.png"
+        alt=""
+      />
+      <img
+        id="speakerOn"
+        onclick="startSong()"
+        src="./assets/images/speaker_on.png"
+        alt=""
+      />
+    </div>
+
+    <!-- //start -->
     <section
       class="header10 cid-rd9sKxQu9q mbr-fullscreen mbr-parallax-background"
       id="header10-b"
@@ -201,7 +219,7 @@ http://naagu-weds-ani.tk/"
           <div>
             <div class="book-info align-center ">
               <h4 class="display-2 book-font mb-3">Engagged</h4>
-              <h4 class="display-2 book-font mb-3">21 october 2018</h4>
+              <h4 class="display-2 book-font mb-3">21 October 2018</h4>
             </div>
           </div>
           <div>
@@ -507,6 +525,9 @@ http://naagu-weds-ani.tk/"
 
     <script>
       var audio1 = document.getElementById("audioOne");
+      var audioOnRef = document.getElementById("speakerOn");
+      var audioOffRef = document.getElementById("speakerOff");
+
       var flag = false;
 
       function on() {
@@ -517,6 +538,17 @@ http://naagu-weds-ani.tk/"
           flag = true;
         }
         document.getElementById("overlay").style.display = "none";
+      }
+
+      function pauseSong() {
+        audio1.pause();
+        audioOnRef.style.display = "block";
+        audioOffRef.style.display = "none";
+      }
+      function startSong() {
+        audio1.play();
+        audioOffRef.style.display = "block";
+        audioOnRef.style.display = "none";
       }
 
       $(window).scroll(function() {
