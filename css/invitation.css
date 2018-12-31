@@ -67,6 +67,10 @@ body {
   .carousel-item > img {
     height: 100vw;
   }
+
+  .side-heading {
+    font-size: 1rem;
+  }
 }
 
 /*
