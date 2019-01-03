@@ -1990,3 +1990,20 @@ body {
   padding-bottom: 30px;
   background-color: #2e2e2e;
 }
+
+.style-overlay {
+  opacity: 0.2 !important;
+  background-color: rgb(0, 0, 0) !important;
+}
+
+.style-width-155{
+  width: 155%;
+}
+
+.style-bg-white{
+  background: rgb(255, 255, 255)
+}
+
+.style-sisplay-none-imp{
+  display: none;
+}
